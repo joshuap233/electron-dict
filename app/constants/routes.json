@@ -1,0 +1,7 @@
+{
+  "HOME": "/",
+  "CONFIG": "/config",
+  "WEB_DICT": "/dict/web",
+  "BRIEF_DICT": "/dict/brief",
+  "HISTORY": "/history"
+}

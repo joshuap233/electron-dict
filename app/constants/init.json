@@ -1,0 +1,36 @@
+{
+  "defaultDict": "/dict/web",
+  "webDict": [],
+  "briefDict": [],
+  "history": [],
+  "using": {
+    "webDict": {
+      "youdao": true,
+      "bing": true
+    },
+    "briefDict": {
+      "youdao": true,
+      "bing": true
+    }
+  },
+  "dicts": [
+    {
+      "name": "必应",
+      "enName": "bing",
+      "url": "https://cn.bing.com/dict/search?q=%s",
+      "insertCss": "html, body {  overflow: hidden;}.sidebar,header,footer {  display:none;}::-webkit-scrollbar {  width: 5px;  background: -webkit-linear-gradient(0, #eee 50%, white 100%);}::-webkit-scrollbar-button {  width: 5px;  background: -webkit-linear-gradient(0, #eee 50%, white 100%);}::-webkit-scrollbar-track {  background: 0 0;}::-webkit-scrollbar-thumb {  background: #000;  -webkit-transition: 0.3s;  transition: 0.3s;}::-webkit-scrollbar-thumb:hover {  background-color: #f5f5f5;}::-webkit-scrollbar-thumb:active {  background-color: #fff;} div.contentPadding{margin:0}",
+      "insertJs": "let re = document.getElementById('miniBar');  re.parentNode.removeChild(re);  re = document.getElementById('bgPro');  re.parentNode.removeChild(re)"
+    },
+    {
+      "name": "有道",
+      "enName": "youdao",
+      "url": "https://m.youdao.com/dict?le=eng&q=%s",
+      "insertCss": "#hd, .content-wrp .dict-dl, #dictNav, #ft, #outer,div[style=\"position: absolute; top: 0px; left: 0px; z-index: 201;\"] {  display: none;}::-webkit-scrollbar {  display:none;}::-webkit-scrollbar-button {  width: 5px;  background: -webkit-linear-gradient(0, #eee 50%, white 100%);}::-webkit-scrollbar-track {  background: 0 0;}::-webkit-scrollbar-thumb {  background: #000;  -webkit-transition: 0.3s;  transition: 0.3s;}::-webkit-scrollbar-thumb:hover {  background-color: #f5f5f5;}::-webkit-scrollbar-thumb:active {  background-color: #fff;} body.p-dict{margin:0!important}",
+      "insertJs": ""
+    }
+  ],
+  "shortcuts": {
+    "searchWord": "ctrl s",
+    "globalWakeUp": "ctrl e"
+  }
+}
