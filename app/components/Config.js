@@ -28,6 +28,10 @@ const DICT_LIST = [
   {route: route.BRIEF_DICT, name: "简洁字典"},
 ];
 
+const TEXTFIELD = [
+  {label: '唤醒快捷键', name: 'globalWakeUp'},
+  {label: '查词快捷键', name: 'searchWord'}
+];
 
 export default function Config(props) {
   const classes = useStyles();
@@ -41,10 +45,14 @@ export default function Config(props) {
   const [isUsing, setIsUsing] = useState(using);
 
   function handleShortcutsChange(name, value) {
+    if (value) {
+      value = `${tempConfig[name]} ${keyCodeMap[value.keyCode]}`;
+    }
     const temp = {...tempConfig};
     temp[name] = value;
     setTempConfig(temp);
   }
+
 
   return (
     <Grid container alignItems="center" style={{padding: "40px"}} spacing={2} justify="space-between">
@@ -68,22 +76,18 @@ export default function Config(props) {
           </Select>
         </FormControl>
       </Grid>
-      <Grid item>
-        <TextField
-          onClick={() => handleShortcutsChange('globalWakeUp', '')}
-          onKeyDown={e => handleShortcutsChange('globalWakeUp', `${tempConfig.globalWakeUp} ${keyCodeMap[e.keyCode]}`)}
-          value={tempConfig.globalWakeUp}
-          label="唤醒快捷键"
-          variant="outlined"/>
-      </Grid>
-      <Grid item>
-        <TextField
-          onClick={() => handleShortcutsChange('searchWord', '')}
-          onKeyDown={e => handleShortcutsChange('searchWord', `${tempConfig.searchWord} ${keyCodeMap[e.keyCode]}`)}
-          value={tempConfig.searchWord}
-          label="查词快捷键"
-          variant="outlined"/>
-      </Grid>
+      {
+        TEXTFIELD.map(item => (
+          <Grid item key={item.name}>
+            <TextField
+              onClick={() => handleShortcutsChange(item.name, '')}
+              onKeyDown={e => handleShortcutsChange(item.name, e)}
+              value={tempConfig[item.name]}
+              label={item.label}
+              variant="outlined"/>
+          </Grid>
+        ))
+      }
       <Grid item container>
         <List component="nav" aria-label="main mailbox folders">
           <ListItem>

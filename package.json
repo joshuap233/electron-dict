@@ -29,7 +29,7 @@
     "start-main-dev": "cross-env HOT=1 NODE_ENV=development electron -r @babel/register ./app/main.dev.js",
     "start-renderer-dev": "cross-env NODE_ENV=development webpack-dev-server --config configs/webpack.config.renderer.dev.babel.js",
     "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 jest",
-    "test-all": "yarn lint && yarn flow && yarn build && yarn test && yarn build-e2e && yarn test-e2e",
+    "test-all": "yarn lint && yarn build && yarn test && yarn build-e2e && yarn test-e2e",
     "test-e2e": "node -r @babel/register ./internals/scripts/CheckBuildsExist.js && cross-env NODE_ENV=test testcafe electron:./app ./test/e2e/HomePage.e2e.js",
     "test-e2e-live": "node -r @babel/register ./internals/scripts/CheckBuildsExist.js && cross-env NODE_ENV=test testcafe-live electron:./app ./test/e2e/HomePage.e2e.js",
     "test-watch": "yarn test --watch"
@@ -54,7 +54,7 @@
     ]
   },
   "build": {
-    "productName": "ElectronReact",
+    "productName": "ElectronDict",
     "appId": "org.develar.ElectronReact",
     "files": [
       "static/",
@@ -122,7 +122,6 @@
     "boilerplate",
     "react",
     "redux",
-    "flow",
     "sass",
     "webpack",
     "hot",
@@ -172,7 +171,6 @@
     "@babel/plugin-transform-react-constant-elements": "^7.6.3",
     "@babel/plugin-transform-react-inline-elements": "^7.2.0",
     "@babel/preset-env": "^7.7.1",
-    "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.7.0",
     "@babel/register": "^7.7.0",
     "axios": "^0.19.0",
@@ -203,7 +201,6 @@
     "eslint-formatter-pretty": "^3.0.0",
     "eslint-import-resolver-webpack": "^0.11.0",
     "eslint-plugin-compat": "^3.3.0",
-    "eslint-plugin-flowtype": "^4.4.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^23.0.4",
     "eslint-plugin-jsx-a11y": "6.2.3",
