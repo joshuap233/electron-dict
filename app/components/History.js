@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
+import {getRandomColor} from './Items';
 
 export default function History(props) {
   const {history, delete_word, handleClick} = props;
@@ -27,9 +28,6 @@ export default function History(props) {
     </Grid>
   );
 
-  function getRandomColor() {
-    const color = ['default', 'primary', 'secondary'];
-    return color[Math.floor(Math.random() * color.length)];
-  }
+
 }
 

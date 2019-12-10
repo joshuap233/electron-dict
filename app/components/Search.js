@@ -7,7 +7,7 @@ import InputBase from '@material-ui/core/InputBase';
 import Paper from '@material-ui/core/Paper';
 import SearchIcon from '@material-ui/icons/Search';
 import {useStyles} from "./searchStyle";
-import {BUTTONS} from "./SearchItems";
+import {SEARCH_BUTTONS} from "./Items";
 
 export default function Search(props) {
   const {
@@ -43,11 +43,11 @@ export default function Search(props) {
       <Grid item>
         <ButtonGroup variant="contained" size="medium">
           {
-            BUTTONS.map(button => (
+            SEARCH_BUTTONS.map(button => (
               <Button
                 key={button.name}
                 onClick={() => changeTo(button.route)}
-                color={BUTTONS.getColor((button.route))}>
+                color={SEARCH_BUTTONS.getColor(location,button.route)}>
                 {button.name}
               </Button>
             ))
@@ -56,8 +56,4 @@ export default function Search(props) {
       </Grid>
     </Grid>
   );
-
-  function isCurrentRoute(route) {
-    return (location.pathname) === route ? "primary" : "default";
-  }
 }

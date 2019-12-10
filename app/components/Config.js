@@ -14,7 +14,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from "@material-ui/core/Button";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {CHECKBOX, DICT_LIST, TEXTFIELD} from './ConfigItem';
+import {CHECKBOX, DICT_LIST, TEXTFIELD} from './Items';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -33,21 +33,6 @@ export default function Config(props) {
   });
 
   const [isUsing, setIsUsing] = useState(using);
-
-  function handleShortcutsChange(name, value) {
-    if (value) {
-      value = `${tempConfig[name]} ${keyCodeMap[value.keyCode]}`;
-    }
-    const temp = {...tempConfig};
-    temp[name] = value;
-    setTempConfig(temp);
-  }
-
-  function handleChangeUsing(type, name) {
-    const temp = {...isUsing};
-    temp[type][name] = !temp[type][name];
-    setIsUsing(temp);
-  }
 
   return (
     <Grid container alignItems="center" style={{padding: "40px"}} spacing={2} justify="space-between">
@@ -109,4 +94,20 @@ export default function Config(props) {
       </Grid>
     </Grid>
   );
+
+  function handleShortcutsChange(name, value) {
+    if (value) {
+      value = `${tempConfig[name]} ${keyCodeMap[value.keyCode]}`;
+    }
+    const temp = {...tempConfig};
+    temp[name] = value;
+    setTempConfig(temp);
+  }
+
+  function handleChangeUsing(type, name) {
+    const temp = {...isUsing};
+    temp[type][name] = !temp[type][name];
+    setIsUsing(temp);
+  }
+
 }
