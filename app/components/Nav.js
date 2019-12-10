@@ -4,7 +4,10 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import {NAV_BUTTONS} from "./Items";
 
 export default function Nav(props) {
-  const {location, changeTo} = props;
+  const {
+    location,
+    changeTo
+  } = props;
   return (
     <ButtonGroup variant="contained" size="medium">
       {

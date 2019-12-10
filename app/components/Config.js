@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -6,7 +6,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import {makeStyles} from '@material-ui/core/styles';
-import keyCodeMap from '../constants/keyCodeMap';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import List from '@material-ui/core/List';
@@ -25,14 +24,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function Config(props) {
   const classes = useStyles();
-  const {defaultDict, shortcuts, change_config, using} = props;
-  const [tempConfig, setTempConfig] = useState({
-    defaultDict: defaultDict,
-    searchWord: shortcuts.searchWord,
-    globalWakeUp: shortcuts.globalWakeUp,
-  });
-
-  const [isUsing, setIsUsing] = useState(using);
+  const {
+    change_config,
+    tempConfig,
+    isUsing,
+    handleShortcutsChange,
+    handleDefaultDictChange,
+    handleChangeUsing
+  } = props;
 
   return (
     <Grid container alignItems="center" style={{padding: "40px"}} spacing={2} justify="space-between">
@@ -46,7 +45,7 @@ export default function Config(props) {
           <InputLabel>默认字典</InputLabel>
           <Select
             value={tempConfig.defaultDict}
-            onChange={(e) => setTempConfig({...tempConfig, defaultDict: e.target.value})}
+            onChange={handleDefaultDictChange}
           >
             {
               DICT_LIST.map(dict => (
@@ -94,20 +93,4 @@ export default function Config(props) {
       </Grid>
     </Grid>
   );
-
-  function handleShortcutsChange(name, value) {
-    if (value) {
-      value = `${tempConfig[name]} ${keyCodeMap[value.keyCode]}`;
-    }
-    const temp = {...tempConfig};
-    temp[name] = value;
-    setTempConfig(temp);
-  }
-
-  function handleChangeUsing(type, name) {
-    const temp = {...isUsing};
-    temp[type][name] = !temp[type][name];
-    setIsUsing(temp);
-  }
-
 }

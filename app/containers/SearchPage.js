@@ -12,9 +12,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators(action, dispatch);
 
 function SearchPage(props) {
-  const {setWord, defaultDict} = props;
+  const {setWord, defaultDict, changeTo, location} = props;
   return (
-    <Search {...{handleKeyDown, handleBtnClick, ...props}}/>
+    <Search {...{handleKeyDown, handleBtnClick, changeTo, location}}/>
   );
 
   function createNewWindow(inputValue) {

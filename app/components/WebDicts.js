@@ -9,7 +9,13 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 
 function WebDict(props) {
   const node = createRef();
-  const {word, insertCss, insertJs, url, name} = props;
+  const {
+    word,
+    insertCss,
+    insertJs,
+    url,
+    name
+  } = props;
   //解析出真正的请求url(去除%s占位符)
   const urlList = url.split('%s');
   const [isHidden, setIsHidden] = useState(false);

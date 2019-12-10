@@ -1,5 +1,5 @@
 import {CHANGE_CONFIG, CHANGE_SEARCH_WORD, DELETE_WORD} from '../actions/action';
-import {dbDefaultDictValue, dbDictsValue, dbHistoryValue, dbShortcutsValue,dbUsingValue} from '../main/dbManager';
+import {dbDefaultDictValue, dbDictsValue, dbHistoryValue, dbShortcutsValue, dbUsingValue} from '../main/dbManager';
 import {ipcRenderer} from "electron";
 
 
@@ -9,7 +9,7 @@ const defaultState = {
   history: dbHistoryValue,
   dicts: dbDictsValue,
   shortcuts: dbShortcutsValue,
-  using:dbUsingValue
+  using: dbUsingValue,
 };
 
 export default function (state = defaultState, action) {
@@ -31,8 +31,8 @@ export default function (state = defaultState, action) {
     case CHANGE_CONFIG: {
       return {
         ...state,
-        shortcuts:{searchWord:config.searchWord,globalWakeUp:config.globalWakeUp},
-        using:config.using
+        shortcuts: {searchWord: config.searchWord, globalWakeUp: config.globalWakeUp},
+        using: config.using
       };
     }
     default:
