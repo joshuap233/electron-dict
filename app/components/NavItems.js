@@ -1,6 +1,6 @@
 import routes from "../constants/routes";
 
-export const BUTTONS = [{
+export const BUTTON = [{
     name: "网页",
     route: routes.WEB_DICT,
   }, {

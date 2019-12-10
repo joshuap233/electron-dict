@@ -6,7 +6,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import {makeStyles} from '@material-ui/core/styles';
-import route from '../constants/routes';
 import keyCodeMap from '../constants/keyCodeMap';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -15,6 +14,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from "@material-ui/core/Button";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import {CHECKBOX, DICT_LIST, TEXTFIELD} from './ConfigItem';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -22,16 +22,6 @@ const useStyles = makeStyles(theme => ({
     minWidth: 120,
   }
 }));
-
-const DICT_LIST = [
-  {route: route.WEB_DICT, name: "网页字典"},
-  {route: route.BRIEF_DICT, name: "简洁字典"},
-];
-
-const TEXTFIELD = [
-  {label: '唤醒快捷键', name: 'globalWakeUp'},
-  {label: '查词快捷键', name: 'searchWord'}
-];
 
 export default function Config(props) {
   const classes = useStyles();
@@ -53,6 +43,11 @@ export default function Config(props) {
     setTempConfig(temp);
   }
 
+  function handleChangeUsing(type, name) {
+    const temp = {...isUsing};
+    temp[type][name] = !temp[type][name];
+    setIsUsing(temp);
+  }
 
   return (
     <Grid container alignItems="center" style={{padding: "40px"}} spacing={2} justify="space-between">
@@ -90,64 +85,26 @@ export default function Config(props) {
       }
       <Grid item container>
         <List component="nav" aria-label="main mailbox folders">
-          <ListItem>
-            <ListItemIcon>
-              <FormControlLabel
-                control={<Checkbox
-                  checked={isUsing.webDict.bing}
-                  onChange={() => setIsUsing({
-                    ...isUsing,
-                    webDict: {...isUsing.webDict, bing: !isUsing.webDict.bing}
-                  })}
-                  color="primary"
-                />}
-                label="网页词典"
-              />
-            </ListItemIcon>
-            <ListItemIcon>
-              <FormControlLabel
-                control={<Checkbox
-                  checked={isUsing.briefDict.bing}
-                  onChange={() => setIsUsing({
-                    ...isUsing,
-                    briefDict: {...isUsing.briefDict, bing: !isUsing.briefDict.bing}
-                  })}
-                  color="primary"
-                />}
-                label="简洁词典"
-              />
-            </ListItemIcon>
-            <ListItemText primary="必应词典"/>
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <FormControlLabel
-                control={<Checkbox
-                  checked={isUsing.webDict.youdao}
-                  onChange={() => setIsUsing({
-                    ...isUsing,
-                    webDict: {...isUsing.webDict, youdao: !isUsing.webDict.youdao}
-                  })}
-                  color="primary"
-                />}
-                label="网页词典"
-              />
-            </ListItemIcon>
-            <ListItemIcon>
-              <FormControlLabel
-                control={<Checkbox
-                  checked={isUsing.briefDict.youdao}
-                  onChange={() => setIsUsing({
-                    ...isUsing,
-                    briefDict: {...isUsing.briefDict, youdao: !isUsing.briefDict.youdao}
-                  })}
-                  color="primary"
-                />}
-                label="简洁词典"
-              />
-            </ListItemIcon>
-            <ListItemText primary="有道词典"/>
-          </ListItem>
+          {
+            CHECKBOX.map(item => (
+              <ListItem key={item.label}>
+                {
+                  item.checkbox.map(icon => (
+                    <ListItemIcon key={icon.type}>
+                      <FormControlLabel
+                        control={<Checkbox
+                          checked={isUsing[icon.type][icon.name]}
+                          onChange={() => handleChangeUsing(icon.type, icon.name)}
+                          color="primary"
+                        />}
+                        label={icon.label}/>
+                    </ListItemIcon>
+                  ))
+                }
+                <ListItemText primary={item.label}/>
+              </ListItem>
+            ))
+          }
         </List>
       </Grid>
     </Grid>

@@ -6,9 +6,8 @@ import IconButton from '@material-ui/core/IconButton';
 import InputBase from '@material-ui/core/InputBase';
 import Paper from '@material-ui/core/Paper';
 import SearchIcon from '@material-ui/icons/Search';
-import routers from '../constants/routes';
 import {useStyles} from "./searchStyle";
-
+import {BUTTONS} from "./SearchItems";
 
 export default function Search(props) {
   const {
@@ -43,12 +42,16 @@ export default function Search(props) {
       {/*词典导航栏*/}
       <Grid item>
         <ButtonGroup variant="contained" size="medium">
-          <Button
-            onClick={() => changeTo(routers.CONFIG)}
-            color={isCurrentRoute(routers.CONFIG)}>设置</Button>
-          <Button
-            onClick={() => changeTo(routers.HISTORY)}
-            color={isCurrentRoute(routers.HISTORY)}>单词本</Button>
+          {
+            BUTTONS.map(button => (
+              <Button
+                key={button.name}
+                onClick={() => changeTo(button.route)}
+                color={BUTTONS.getColor((button.route))}>
+                {button.name}
+              </Button>
+            ))
+          }
         </ButtonGroup>
       </Grid>
     </Grid>
