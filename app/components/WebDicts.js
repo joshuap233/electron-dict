@@ -2,10 +2,8 @@ import React, {createRef, useLayoutEffect, useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {useStyles} from "./webDictStyle";
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import RefreshIcon from '@material-ui/icons/Refresh';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import {WEB_DiCT_BUTTONS} from './Items';
 
 function WebDict(props) {
   const node = createRef();
@@ -48,7 +46,7 @@ function WebDict(props) {
           {name}
         </Button>
         {
-          BUTTONS.map(button => (
+          WEB_DiCT_BUTTONS.map(button => (
             <Button key={button.name} onClick={() => {
               button.handleClick(node);
             }}>
@@ -68,23 +66,6 @@ function WebDict(props) {
     </>
   );
 }
-
-const BUTTONS = [
-  {
-    name: 'goBack', icon: <ArrowBackIcon/>, handleClick: (node) => {
-      node.current.goBack();
-    }
-  },
-  {
-    name: 'goForward', icon: <ArrowForwardIcon/>, handleClick: (node) => {
-      node.current.goForward();
-    }
-  },
-  {
-    name: 'reload', icon: <RefreshIcon/>, handleClick: (node) => {
-      node.current.reload();
-    }
-  }];
 
 
 export default WebDict;

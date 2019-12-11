@@ -1,5 +1,10 @@
+import React from "react";
 import route from "../constants/routes";
 import routes from "../constants/routes";
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import RefreshIcon from '@material-ui/icons/Refresh';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 
 export const DICT_LIST = [
   {route: route.WEB_DICT, name: "网页字典"},
@@ -44,3 +49,20 @@ export function getRandomColor() {
   const color = ['default', 'primary', 'secondary'];
   return color[Math.floor(Math.random() * color.length)];
 }
+
+export const WEB_DiCT_BUTTONS = [
+  {
+    name: 'goBack', icon: <ArrowBackIcon/>, handleClick: (node) => {
+      node.current.goBack();
+    }
+  },
+  {
+    name: 'goForward', icon: <ArrowForwardIcon/>, handleClick: (node) => {
+      node.current.goForward();
+    }
+  },
+  {
+    name: 'reload', icon: <RefreshIcon/>, handleClick: (node) => {
+      node.current.reload();
+    }
+  }];
