@@ -6,13 +6,18 @@ import * as action from "../actions/action";
 import Grid from "@material-ui/core/Grid";
 
 function WebDicts(props) {
-  const {setWord, location, dicts,using} = props;
+  const {setWord, location, dicts, using} = props;
   let {word} = props;
   //跳转至当简洁字典,使用store里储存的的word,否则使用查询参数里的word
   if (!word) {
     word = location.search.replace("?", "");
     //传来的参数被编码,解码储存
-    setWord(decodeURI(word));
+    // TODO: bug 长文本报错,无法解码
+    try {
+      setWord(decodeURI(word));
+    } catch (e) {
+
+    }
   }
   return (
     <Grid direction="column" container justify="center" alignItems="center">
